@@ -1,1 +1,1 @@
-## a chrome extension
+## a stock chrome extension
