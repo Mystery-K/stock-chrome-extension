@@ -79,4 +79,6 @@ document.getElementById("addBtn").onclick = function() {
   };
 };
 
-httpRequest(showResult);
+setInterval(() => {
+  httpRequest(showResult);
+}, 1000);
