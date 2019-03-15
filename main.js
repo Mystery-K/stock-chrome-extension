@@ -16,7 +16,8 @@ function httpRequest(callback) {
 
 function showResult(result) {
   var table =
-    "<table><thead><tr><th>股票</th><th>最新价</th><th>涨跌幅</th></tr></thead><tbody>";
+    // "<table><thead><tr><th>股票</th><th>最新价</th><th>涨跌幅</th></tr></thead><tbody>";
+    "<table><tbody>";
 
   var arr = result.split(";").slice(0, -1);
 
@@ -30,7 +31,6 @@ function showResult(result) {
     var isUS = code.indexOf("$") != -1;
     curr = isUS ? Number(itemArr[1]).toFixed(2) : Number(itemArr[3]).toFixed(2);
     yest = Number(itemArr[2]).toFixed(2);
-    console.log(code);
     range = isUS ? itemArr[2] : ((curr - yest) / yest * 100).toFixed(2);
 
     table += "<tr>";
@@ -78,7 +78,9 @@ document.getElementById("addBtn").onclick = function() {
     add.appendChild(addBtn);
   };
 };
-
-setInterval(() => {
+(function() {
   httpRequest(showResult);
-}, 1000);
+  setInterval(() => {
+    httpRequest(showResult);
+  }, 1000);
+})();
